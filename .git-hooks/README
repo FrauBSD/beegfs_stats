@@ -1,0 +1,23 @@
+# $FrauBSD: beegfs_stats/.git-hooks/README 2020-07-20 14:01:29 -0700 freebsdfrau $
+
+!! ATTENTION DEVELOPERS AND CONTRIBUTORS !!
+
+To get RCS Keywords (like the FrauBSD one at the top of this file) to expand,
+follow these steps before using `git commit' in this project:
+
+   $ .git-hooks/install.sh
+
+Cheers!
+
+Supported keywords:
+
+	$Author: freebsdfrau $
+	$Branch: master $
+	$Date: 2020-07-20 14:01:29 -0700 $
+	$Header: .git-hooks/README 2020-07-20 14:01:29 -0700 freebsdfrau $
+	$Origin: https://github.com/FrauBSD/beegfs_stats.git $
+	$Project: //github.com/FrauBSD/beegfs_stats.git $
+	$RCSfile: README $
+	$Source: .git-hooks/README $
+	$FrauBSD: beegfs_stats/.git-hooks/README 2020-07-20 14:01:29 -0700 freebsdfrau $
+

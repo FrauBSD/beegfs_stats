@@ -1,0 +1,17 @@
+/var/log/beegfs_mstats.log {
+    daily
+    rotate 7
+    missingok
+    dateext
+    copytruncate
+    compress
+}
+
+/var/log/beegfs_stats.log {
+    daily
+    rotate 7
+    missingok
+    dateext
+    copytruncate
+    compress
+}

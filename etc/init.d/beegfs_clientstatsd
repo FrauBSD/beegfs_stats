@@ -1,0 +1,77 @@
+#!/bin/sh
+#
+# beegfstop - script to start/stop beegfstop daemon
+#
+# chkconfig:   2345 99 10
+# description: daemon to dump BeeGFS statistics to file
+# processname: beegfstop
+# pidfile:     /var/run/beegfs_clientstatsd.pid
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+beegfstop=/usr/bin/beegfstop
+args=-cji60
+
+prog=beegfs_clientstatsd
+pidfile=/var/run/$prog.pid
+logfile=/var/log/beegfs_stats.log
+
+start()
+{
+	local st
+
+	if st=$( status ); then
+		echo "$st"
+		return
+	fi
+	[ -x $beegfstop ] || exit 5
+	echo -n "Starting $prog: "
+	$beegfstop $args <&- >> $logfile 2> /var/run/$prog.stderr &
+	sleep 3
+	if kill -0 $! 2> /dev/null; then
+		echo success
+		echo $! > $pidfile
+	else
+		echo failed
+	fi
+}
+
+stop()
+{
+	local st
+
+	if ! st=$( status ); then
+		echo "$st"
+		return
+	fi
+	echo -n "Stopping $prog: "
+	pkill -9 -P $( cat $pidfile )
+	if [ $? -eq 0 ]; then
+		echo killed
+	else
+		echo failed
+	fi
+}
+
+status()
+{
+	local pid
+
+	if pid=$( cat $pidfile 2> /dev/null ) &&
+	   pgrep -P $pid awk > /dev/null
+	then
+		echo "$prog is running (pid $pid)"
+	else
+		echo "$prog not running"
+		return 1
+	fi
+}
+
+case "$1" in
+start|stop|status) $1 ;;
+restart) stop && sleep 3 && start ;;
+*)
+	echo "Usage: $0 {start|stop|restart|status}"
+	exit 2
+esac

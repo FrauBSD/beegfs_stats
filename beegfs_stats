@@ -1,0 +1,50 @@
+#!/bin/sh
+############################################################ IDENT(1)
+#
+# $Title: Telegraf daemon to import log file to InfluxDB $
+# $Copyright: 2019-2020 Devin Teske. All rights reserved. $
+# $FrauBSD: beegfs_stats/beegfs_stats 2020-07-20 14:34:25 -0700 freebsdfrau $
+#
+############################################################ CONFIGURATION
+
+CONF="${0##*/}.conf"
+
+############################################################ GLOBALS
+
+pgm="${0##*/}" # Program basename
+
+#
+# Global exit status
+#
+SUCCESS=0
+FAILURE=1
+
+#
+# OS Glue
+#
+CONFDIR=/etc
+case "${UNAME_s:=$( uname -s )}" in
+FreeBSD) CONFDIR=/usr/local/etc ;;
+esac
+
+############################################################ FUNCTIONS
+
+usage()
+{
+	echo "Usage: $pgm" >&2
+	exit $FAILURE
+}
+
+############################################################ MAIN
+
+#
+# Launch telegraf to send file to influxdb
+#
+telegraf --config "$CONFDIR/$CONF"
+
+# NOTREACHED UNLESS ERROR
+exit $?
+
+################################################################################
+# END
+################################################################################

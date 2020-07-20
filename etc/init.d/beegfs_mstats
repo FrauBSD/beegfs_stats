@@ -1,0 +1,76 @@
+#!/bin/sh
+#
+# beegfs_mstats - script to start/stop beegfs_mstats daemon
+#
+# chkconfig:   2345 99 10
+# description: daemon to dump beegfs_mstats.log statistics to InfluxDB
+#              (requires telegraf)
+# processname: beegfs_mstats
+# pidfile:     /var/run/beegfs_mstats.pid
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+beegfs_mstats=/usr/local/bin/beegfs_mstats
+prog=${beegfs_mstats##*/}
+
+pidfile="/var/run/$prog.pid"
+
+start()
+{
+	local st
+
+	if st=$( status ); then
+		echo "$st"
+		return
+	fi
+	[ -x $beegfs_mstats ] || exit 5
+	echo -n "Starting $prog: "
+	$beegfs_mstats <&- >&- 2> /var/run/$prog.stderr &
+	sleep 3
+	if kill -0 $! 2> /dev/null; then
+		echo success
+		echo $! > $pidfile
+	else
+		echo failed
+	fi
+}
+
+stop()
+{
+	local st
+
+	if ! st=$( status ); then
+		echo "$st"
+		return
+	fi
+	echo -n "Stopping $prog: "
+	pkill -P $( cat $pidfile )
+	if [ $? -eq 0 ]; then
+		echo killed
+	else
+		echo failed
+	fi
+}
+
+status()
+{
+	local pid
+
+	if pid=$( cat $pidfile 2> /dev/null ) &&
+	   pgrep -P $pid telegraf > /dev/null
+	then
+		echo "$prog is running (pid $pid)"
+	else
+		echo "$prog not running"
+		return 1
+	fi
+}
+
+case "$1" in
+start|stop|status) $1 ;;
+restart) stop && sleep 3 && start ;;
+*)
+	echo "Usage: $0 {start|stop|restart|status}"
+	exit 2
+esac

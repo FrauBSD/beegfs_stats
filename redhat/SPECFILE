@@ -1,0 +1,106 @@
+# -*- tab-width:  4 -*- ;; Emacs
+# vi: set noexpandtab   :: Vi/ViM
+# vi: set filetype=spec ::
+############################################################ HEADER
+
+Name: beegfs_stats
+Group: System Environment/Daemons
+# For a list of groups, see pkgcenter/redhat/Mk/GROUPS
+
+Summary: beegfs_stats
+License: BSD
+Version: 3.1
+Release: 1.el7
+Buildarch: noarch
+
+URL: https://www.fraubsd.org/beegfs_stats
+Packager: Devin Teske <dteske@freebsd.org>
+Vendor: The FrauBSD Project https://www.fraubsd.org/
+
+BuildRoot: %{_tmppath}/src
+
+Requires: telegraf
+Requires: beegfstop >= 8.0.1
+
+############################################################ DESCRIPTION
+
+%Description
+Daemons for pulling BeeGFS stats into InfluxDB.
+
+############################################################ MACROS
+
+#
+# Define how we should install the files into the temporary
+# install-root from which the RPM will be compiled.
+#
+%define TAR          %{__tar}
+%define TARFROMFLAGS c --exclude CVS -f - -C
+%define TARFILES     .
+%define TARTOFLAGS   xvf - -C
+
+#
+# Short-hand
+#
+# NOTE: $RPM_BUILD_ROOT has a trailing-slash
+#
+%define TMPROOT $RPM_BUILD_ROOT
+
+############################################################ INSTALL STANZA
+
+%install
+%{__mkdir_p} %{TMPROOT}
+%{TAR} %{TARFROMFLAGS} %{_srcdir} %{TARFILES} | %{TAR} %{TARTOFLAGS} %{TMPROOT}
+
+############################################################ FILES STANZA
+
+%files
+%defattr(-,root,root)
+/etc/beegfs_mstats.conf
+/etc/beegfs_stats.conf
+/etc/init.d/beegfs_clientmstatsd
+/etc/init.d/beegfs_clientstatsd
+/etc/init.d/beegfs_mstats
+/etc/init.d/beegfs_servermstatsd
+/etc/init.d/beegfs_serverstatsd
+/etc/init.d/beegfs_stats
+/etc/init.d/beegfs_usermstatsd
+/etc/init.d/beegfs_userstatsd
+/etc/logrotate.d/beegfs_stats
+/usr/local/bin/beegfs_mstats
+/usr/local/bin/beegfs_stats
+
+############################################################ FOOTER
+
+%pre
+
+
+%post
+case "$HOSTNAME" in
+rose-*) sed -i -e 's/vmon02\.main/rose-vmon02.rdc/' \
+	/etc/beegfs_mstats.conf \
+	/etc/beegfs_stats.conf
+esac
+SERVICES="
+	beegfs_clientmstatsd
+	beegfs_clientstatsd
+	beegfs_mstats
+	beegfs_servermstatsd
+	beegfs_serverstatsd
+	beegfs_stats
+	beegfs_usermstatsd
+	beegfs_userstatsd
+" # END-QUOTE
+for svc in $SERVICES; do
+	chkconfig $svc on
+	! service $svc status > /dev/null 2>&1 || service $svc restart
+done
+
+%preun
+
+
+%postun
+
+
+%changelog
+* Mon Jul 20 2020 Devin Teske <dteske@freebsd.org> 3.1-1.el7
+- Package created

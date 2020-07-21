@@ -16,7 +16,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": 60,
-  "iteration": 1595255119447,
+  "iteration": 1595352298147,
   "links": [],
   "panels": [
     {
@@ -429,10 +429,10 @@
         "min": false,
         "rightSide": true,
         "show": true,
-        "sideWidth": 540,
-        "sort": "current",
+        "sideWidth": 633,
+        "sort": "total",
         "sortDesc": true,
-        "total": false,
+        "total": true,
         "values": true
       },
       "lines": false,
@@ -922,8 +922,8 @@
         "min": false,
         "rightSide": true,
         "show": true,
-        "sideWidth": 540,
-        "sort": "max",
+        "sideWidth": 633,
+        "sort": "total",
         "sortDesc": true,
         "total": true,
         "values": true
@@ -1247,7 +1247,7 @@
         "min": false,
         "rightSide": true,
         "show": true,
-        "sideWidth": 540,
+        "sideWidth": 633,
         "sort": "avg",
         "sortDesc": true,
         "total": false,
@@ -1460,7 +1460,7 @@
         "min": false,
         "rightSide": true,
         "show": true,
-        "sideWidth": 540,
+        "sideWidth": 633,
         "sort": "avg",
         "sortDesc": true,
         "total": false,
@@ -1773,7 +1773,6 @@
     "list": [
       {
         "current": {
-          "selected": true,
           "text": "Site",
           "value": "Site"
         },
@@ -1836,7 +1835,6 @@
         "auto_count": 50,
         "auto_min": "60s",
         "current": {
-          "tags": [],
           "text": "auto",
           "value": "$__auto_interval_buckets"
         },
@@ -2244,5 +2242,5 @@
   "timezone": "",
   "title": "BeeGFS Total Data I/O by User/Client/Node",
   "uid": "O0Tkji3Wk",
-  "version": 81
+  "version": 85
 }

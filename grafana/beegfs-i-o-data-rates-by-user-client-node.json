@@ -1,0 +1,2964 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 1,
+  "id": 58,
+  "iteration": 1595221615786,
+  "links": [],
+  "panels": [
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "beegfs_stats",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 0,
+        "y": 0
+      },
+      "id": 9,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "options": {},
+      "pluginVersion": "6.2.5",
+      "postfix": " ${mode}s",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT count(distinct(\"$mode\")) FROM (SELECT first(\"read_rate\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = '$mode') GROUP BY \"$mode\" fill(none)) WHERE $timeFilter GROUP BY time($buckets) fill(none)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "vnas01"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "group"
+            }
+          ]
+        }
+      ],
+      "thresholds": "",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transparent": true,
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {},
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "beegfs_stats",
+      "fill": 1,
+      "gridPos": {
+        "h": 10,
+        "w": 19,
+        "x": 5,
+        "y": 0
+      },
+      "id": 38,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": true,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sideWidth": 525,
+        "sort": "current",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": false,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {},
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "/^TotalA /",
+          "color": "rgba(158, 166, 245, 0.18)",
+          "zindex": -2
+        },
+        {
+          "alias": "/^TotalB /",
+          "color": "rgba(158, 166, 245, 0.18)",
+          "transform": "negative-Y",
+          "zindex": -2
+        },
+        {
+          "alias": "/^TotalC /",
+          "color": "rgba(115, 191, 105, 0)",
+          "hideTooltip": false,
+          "legend": false,
+          "yaxis": 2,
+          "zindex": -3
+        },
+        {
+          "alias": "/^TotalD /",
+          "color": "rgba(87, 148, 242, 0)",
+          "hideTooltip": false,
+          "legend": false,
+          "transform": "negative-Y",
+          "yaxis": 2,
+          "zindex": -3
+        },
+        {
+          "alias": "/^a\\./",
+          "stack": true
+        },
+        {
+          "alias": "/^b./",
+          "stack": "B",
+          "transform": "negative-Y"
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "TotalA $metric_a",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "$metric_a"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "TotalB $metric_b",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "$metric_b"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "TotalC $metric_a",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "$metric_a"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "TotalD $metric_b",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "D",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "$metric_b"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "a.$metric_a.[[tag_user]]",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT \"$mode\" FROM (SELECT last(\"$metric_a\") AS \"user\" FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'user') GROUP BY time($buckets), \"user\" fill(0)) WHERE $timeFilter GROUP BY \"user\"",
+          "rawQuery": true,
+          "refId": "E",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        },
+        {
+          "alias": "b.$metric_b.[[tag_user]]",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT \"$mode\" FROM (SELECT last(\"$metric_b\") AS \"user\" FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'user') GROUP BY time($buckets), \"user\" fill(0)) WHERE $timeFilter GROUP BY \"user\"",
+          "rawQuery": true,
+          "refId": "F",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        },
+        {
+          "alias": "a.$metric_a.[[tag_client]]",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT \"$mode\" FROM (SELECT last(\"$metric_a\") AS \"client\" FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'client') GROUP BY time($buckets), \"client\" fill(0)) WHERE $timeFilter GROUP BY \"client\"",
+          "rawQuery": true,
+          "refId": "G",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        },
+        {
+          "alias": "b.$metric_b.[[tag_client]]",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT \"$mode\" FROM (SELECT last(\"$metric_b\") AS \"client\" FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'client') GROUP BY time($buckets), \"client\" fill(0)) WHERE $timeFilter GROUP BY \"client\"",
+          "rawQuery": true,
+          "refId": "H",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "$colo $name $mode $metric_a/$metric_b ($buckets buckets)",
+      "tooltip": {
+        "shared": false,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "iops",
+          "label": "<--- Graph B ----- Graph A --->",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "Bps",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": true,
+        "alignLevel": 0
+      }
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "beegfs_stats",
+      "decimals": 2,
+      "format": "Bps",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 5,
+        "x": 0,
+        "y": 3
+      },
+      "id": 40,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "options": {},
+      "postfix": " / 23.28 GBs",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "user",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "$mode"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT \"last\" FROM (SELECT last(\"rw_rate\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = '$mode') GROUP BY time($buckets), \"$mode\" fill(0) LIMIT 1) WHERE (\"last\" > 0) AND $timeFilter ORDER BY time DESC",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "$pie_metric"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "$mode"
+            }
+          ]
+        }
+      ],
+      "thresholds": "",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transparent": true,
+      "type": "singlestat",
+      "valueFontSize": "50%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "total"
+    },
+    {
+      "aliasColors": {
+        "Idle": "rgb(41, 41, 41)",
+        "Idle/Other": "rgb(41, 41, 41)",
+        "Read (Out)": "#66db70",
+        "Write": "#3381d9",
+        "Write (In)": "#3381d9"
+      },
+      "breakPoint": "50%",
+      "cacheTimeout": null,
+      "combine": {
+        "label": "Others",
+        "threshold": "0.005"
+      },
+      "datasource": "beegfs_stats",
+      "fontSize": "80%",
+      "format": "iops",
+      "gridPos": {
+        "h": 6,
+        "w": 5,
+        "x": 0,
+        "y": 4
+      },
+      "id": 23,
+      "interval": null,
+      "legend": {
+        "header": "",
+        "percentage": true,
+        "percentageDecimals": 1,
+        "show": false,
+        "sideWidth": 285,
+        "sort": "current",
+        "sortDesc": true,
+        "values": false
+      },
+      "legendType": "Under graph",
+      "links": [],
+      "maxDataPoints": 3,
+      "nullPointMode": "connected",
+      "options": {},
+      "pieType": "pie",
+      "strokeWidth": "",
+      "targets": [
+        {
+          "alias": "Idle",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT \"$pie_idle\" FROM (SELECT $bandwidth - last(\"rw_rate\") AS \"Show\" FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_$mode') GROUP BY time($buckets) fill(none)) WHERE $timeFilter",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "total_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "- 8053063680"
+                ],
+                "type": "math"
+              }
+            ]
+          ],
+          "tags": []
+        },
+        {
+          "alias": "",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "$mode"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT max(\"read_rate\") FROM \"tail\" WHERE (\"host\" = 'vnas01' AND \"ident\" = 'server') AND $timeFilter GROUP BY time($buckets), \"server\" fill(null)",
+          "rawQuery": false,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "$pie_metric"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              },
+              {
+                "params": [
+                  "$pie_metric"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "$mode"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "$colo $name $mode $pie_metric",
+      "transparent": true,
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
+    },
+    {
+      "content": "<style>\n.hr-text {\n  line-height: 1em;\n  position: relative;\n  outline: 0;\n  border: 0;\n  color: black;\n  text-align: center;\n  height: 1.5em;\n  opacity: .5;\n  font-family: Futura, sans-serif;\n}\n.hr-text:before {\n  content: '';\n  background: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(#818078), to(transparent));\n  background: linear-gradient(to right, transparent, #FFFFFF, transparent);\n  position: absolute;\n  left: 0;\n  top: 50%;\n  width: 100%;\n  height: 1px;\n}\n.hr-text:after {\n  content: attr(data-content);\n  position: relative;\n  display: inline-block;\n  color: black;\n  padding: 0 .5em;\n  line-height: 1.5em;\n  color: #FFFFFF;\n  background-color: #161719;\n  white-space: pre;\n  margin-top: -9px;\n}\n</style>\n<table align=\"center\" width=\"100%\" height=\"100%\" style=\"border: 0px\">\n  <tr><td style=\"border: 0px\">\n    <hr align=\"center\" class=\"hr-text\" data-content=\"^ USERS/CLIENTS ^\nv NODES v\">\n  </td></tr>\n</table>",
+      "gridPos": {
+        "h": 2,
+        "w": 24,
+        "x": 0,
+        "y": 10
+      },
+      "id": 28,
+      "links": [],
+      "mode": "html",
+      "options": {},
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "beegfs_stats",
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 5,
+        "x": 0,
+        "y": 12
+      },
+      "hideTimeOverride": true,
+      "id": 11,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "options": {},
+      "pluginVersion": "6.2.5",
+      "postfix": " nodes",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT count(distinct(\"server\")) FROM (SELECT first(\"bsy\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'server') GROUP BY \"server\" fill(none)) WHERE $timeFilter GROUP BY time($buckets)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "vnas01"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "group"
+            }
+          ]
+        }
+      ],
+      "thresholds": "",
+      "timeFrom": null,
+      "timeShift": "5m",
+      "title": "",
+      "transparent": true,
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {},
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "beegfs_stats",
+      "fill": 1,
+      "gridPos": {
+        "h": 6,
+        "w": 19,
+        "x": 5,
+        "y": 12
+      },
+      "id": 6,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": true,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sideWidth": 525,
+        "sort": "avg",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": false,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {},
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "Total Read/Out",
+          "color": "rgba(158, 166, 245, 0.18)",
+          "zindex": -3
+        },
+        {
+          "alias": "Total Write/In",
+          "color": "rgba(158, 166, 245, 0.18)",
+          "transform": "negative-Y",
+          "zindex": -3
+        },
+        {
+          "alias": "/^read_rate\\./",
+          "stack": true
+        },
+        {
+          "alias": "/^write_rate\\./",
+          "stack": "B",
+          "transform": "negative-Y"
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "read_rate.[[tag_server]]",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "server"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"read_rate\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'server') AND $timeFilter GROUP BY time($buckets), \"server\" fill(0)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "read_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "server"
+            }
+          ]
+        },
+        {
+          "alias": "write_rate.[[tag_server]]",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "server"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"write_rate\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'server') AND $timeFilter GROUP BY time($buckets), \"server\" fill(0)",
+          "rawQuery": false,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "write_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "server"
+            }
+          ]
+        },
+        {
+          "alias": "Total Read/Out",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"read_rate\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_server') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "read_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_server"
+            }
+          ]
+        },
+        {
+          "alias": "Total Write/In",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"write_rate\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_server') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "D",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "write_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_server"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "$colo $name Node read_rate/write_rate ($buckets buckets)",
+      "tooltip": {
+        "shared": false,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "Bps",
+          "label": "<--- Write/In ----- Read/Out --->",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "decimals": null,
+          "format": "Bps",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "beegfs_stats",
+      "decimals": 2,
+      "format": "Bps",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 5,
+        "x": 0,
+        "y": 15
+      },
+      "id": 41,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "options": {},
+      "postfix": " / 23.28 GBs",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": false
+      },
+      "tableColumn": "user",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "$mode"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT \"last\" FROM (SELECT last(\"rw_rate\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'server') GROUP BY time($buckets), \"server\" fill(0) LIMIT 1) WHERE (\"last\" > 0) AND $timeFilter ORDER BY time DESC",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "$pie_metric"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "$mode"
+            }
+          ]
+        }
+      ],
+      "thresholds": "",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transparent": true,
+      "type": "singlestat",
+      "valueFontSize": "50%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "total"
+    },
+    {
+      "aliasColors": {
+        "Idle": "rgb(41, 41, 41)",
+        "Idle/Other": "rgb(41, 41, 41)",
+        "Read (Out)": "#66db70",
+        "Write": "#3381d9",
+        "Write (In)": "#3381d9"
+      },
+      "breakPoint": "50%",
+      "cacheTimeout": null,
+      "combine": {
+        "label": "Others",
+        "threshold": "0.005"
+      },
+      "datasource": "beegfs_stats",
+      "fontSize": "80%",
+      "format": "Bps",
+      "gridPos": {
+        "h": 6,
+        "w": 5,
+        "x": 0,
+        "y": 16
+      },
+      "id": 22,
+      "interval": null,
+      "legend": {
+        "header": "",
+        "percentage": true,
+        "percentageDecimals": 1,
+        "show": false,
+        "sideWidth": 285,
+        "sort": "current",
+        "sortDesc": true,
+        "values": false
+      },
+      "legendType": "Under graph",
+      "links": [],
+      "maxDataPoints": 3,
+      "nullPointMode": "connected",
+      "options": {},
+      "pieType": "pie",
+      "strokeWidth": "",
+      "targets": [
+        {
+          "alias": "Idle",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT \"$pie_idle\" FROM (SELECT $bandwidth - last(\"rw_rate\") AS \"Show\" FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_server') GROUP BY time($buckets) fill(null)) WHERE $timeFilter",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "total_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "- 8053063680"
+                ],
+                "type": "math"
+              }
+            ]
+          ],
+          "tags": []
+        },
+        {
+          "alias": "[[tag_server]]",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "server"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"total_rate\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'server') AND $timeFilter GROUP BY time($buckets), \"server\" fill(null)",
+          "rawQuery": false,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "rw_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "server"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "$colo $name rw_rate",
+      "transparent": true,
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {},
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "beegfs_stats",
+      "fill": 1,
+      "gridPos": {
+        "h": 5,
+        "w": 19,
+        "x": 5,
+        "y": 18
+      },
+      "id": 34,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": true,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sideWidth": 525,
+        "sort": "current",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": false,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {},
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "Total Reqs",
+          "color": "rgba(158, 166, 245, 0.18)",
+          "zindex": -3
+        },
+        {
+          "alias": "/^reqs\\./",
+          "stack": true
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "reqs.[[tag_server]]",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "server"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"reqs\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'server') AND $timeFilter GROUP BY time($buckets), \"server\" fill(0)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "reqs"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "server"
+            }
+          ]
+        },
+        {
+          "alias": "Total Reqs",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "server"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"reqs\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_server') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "reqs"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_server"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "$colo $name Node Data Requests ($buckets buckets)",
+      "tooltip": {
+        "shared": false,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": "Reqs",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "decimals": null,
+          "format": "Bps",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {
+        "Idle": "rgb(41, 41, 41)",
+        "Idle/Other": "rgb(41, 41, 41)",
+        "Read (Out)": "#66db70",
+        "Write": "#3381d9",
+        "Write (In)": "#3381d9"
+      },
+      "breakPoint": "50%",
+      "cacheTimeout": null,
+      "combine": {
+        "label": "Others",
+        "threshold": "0.005"
+      },
+      "datasource": "beegfs_stats",
+      "fontSize": "80%",
+      "format": "short",
+      "gridPos": {
+        "h": 6,
+        "w": 5,
+        "x": 0,
+        "y": 22
+      },
+      "id": 37,
+      "interval": null,
+      "legend": {
+        "header": "",
+        "percentage": true,
+        "percentageDecimals": 1,
+        "show": false,
+        "sideWidth": 285,
+        "sort": "current",
+        "sortDesc": true,
+        "values": false
+      },
+      "legendType": "Under graph",
+      "links": [],
+      "maxDataPoints": 3,
+      "nullPointMode": "connected",
+      "options": {},
+      "pieType": "donut",
+      "strokeWidth": "",
+      "targets": [
+        {
+          "alias": "[[tag_server]]",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "server"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"total_rate\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'server') AND $timeFilter GROUP BY time($buckets), \"server\" fill(null)",
+          "rawQuery": false,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "bsy"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "server"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "$colo $name Data Bsy",
+      "transparent": true,
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {},
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "beegfs_stats",
+      "fill": 1,
+      "gridPos": {
+        "h": 5,
+        "w": 19,
+        "x": 5,
+        "y": 23
+      },
+      "id": 30,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": true,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sideWidth": 525,
+        "sort": "current",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": false,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {},
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "Total Bsy",
+          "color": "rgba(158, 166, 245, 0.18)",
+          "zindex": -3
+        },
+        {
+          "alias": "Total Qlen",
+          "color": "rgba(196, 22, 42, 0.18)",
+          "transform": "negative-Y",
+          "zindex": -3
+        },
+        {
+          "alias": "/^qlen\\./",
+          "stack": true,
+          "transform": "negative-Y"
+        },
+        {
+          "alias": "/^bsy\\./",
+          "stack": "B"
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "bsy.[[tag_server]]",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "server"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT \"$show_bsy\" FROM (SELECT last(\"bsy\") AS \"Show\" FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'server') GROUP BY time($buckets) fill(0)) WHERE $timeFilter GROUP BY \"server\"",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "read_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "max"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "server"
+            }
+          ]
+        },
+        {
+          "alias": "qlen.[[tag_server]]",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "server"
+              ],
+              "type": "tag"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT \"$show_qlen\" FROM (SELECT last(\"qlen\") AS \"Show\" FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'server') GROUP BY time($buckets) fill(0)) WHERE $timeFilter GROUP BY \"server\"",
+          "rawQuery": true,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "read_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "max"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "server"
+            }
+          ]
+        },
+        {
+          "alias": "Total Bsy",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT \"$show_bsy\" FROM (SELECT last(\"bsy\") AS \"Show\" FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_server') GROUP BY time($buckets) fill(0)) WHERE $timeFilter",
+          "rawQuery": true,
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "read_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "max"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_server"
+            }
+          ]
+        },
+        {
+          "alias": "Total Qlen",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT \"$show_qlen\" FROM (SELECT last(\"qlen\") AS \"Show\" FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_server') GROUP BY time($buckets) fill(0)) WHERE $timeFilter",
+          "rawQuery": true,
+          "refId": "D",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "read_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "max"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_server"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "$colo $name Node Data Bsy/Qlen ($buckets buckets)",
+      "tooltip": {
+        "shared": false,
+        "sort": 2,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": "<--- Qlen ----- Bsy --->",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "decimals": null,
+          "format": "Bps",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 18,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": true,
+          "text": "Site",
+          "value": "Site"
+        },
+        "hide": 2,
+        "label": null,
+        "name": "colo",
+        "options": [
+          {
+            "selected": true,
+            "text": "Site",
+            "value": "Site"
+          }
+        ],
+        "query": "Site",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": "BeeGFS",
+          "value": "BeeGFS"
+        },
+        "hide": 2,
+        "label": "Name",
+        "name": "name",
+        "options": [
+          {
+            "selected": true,
+            "text": "BeeGFS",
+            "value": "BeeGFS"
+          }
+        ],
+        "query": "BeeGFS",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": "stats-server-hostname",
+          "value": "stats-server-hostname"
+        },
+        "hide": 2,
+        "label": "Host",
+        "name": "host",
+        "options": [
+          {
+            "selected": true,
+            "text": "stats-server-hostname",
+            "value": "stats-server-hostname"
+          }
+        ],
+        "query": "stats-server-hostname",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "current": {
+          "text": "25000000000",
+          "value": "25000000000"
+        },
+        "hide": 2,
+        "label": null,
+        "name": "bandwidth",
+        "options": [
+          {
+            "selected": true,
+            "text": "25000000000",
+            "value": "25000000000"
+          }
+        ],
+        "query": "25000000000",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "auto": true,
+        "auto_count": 50,
+        "auto_min": "60s",
+        "current": {
+          "text": "auto",
+          "value": "$__auto_interval_buckets"
+        },
+        "hide": 0,
+        "label": "Buckets",
+        "name": "buckets",
+        "options": [
+          {
+            "selected": true,
+            "text": "auto",
+            "value": "$__auto_interval_buckets"
+          },
+          {
+            "selected": false,
+            "text": "1m",
+            "value": "1m"
+          },
+          {
+            "selected": false,
+            "text": "5m",
+            "value": "5m"
+          },
+          {
+            "selected": false,
+            "text": "10m",
+            "value": "10m"
+          },
+          {
+            "selected": false,
+            "text": "30m",
+            "value": "30m"
+          },
+          {
+            "selected": false,
+            "text": "1h",
+            "value": "1h"
+          },
+          {
+            "selected": false,
+            "text": "6h",
+            "value": "6h"
+          },
+          {
+            "selected": false,
+            "text": "12h",
+            "value": "12h"
+          },
+          {
+            "selected": false,
+            "text": "1d",
+            "value": "1d"
+          },
+          {
+            "selected": false,
+            "text": "7d",
+            "value": "7d"
+          },
+          {
+            "selected": false,
+            "text": "14d",
+            "value": "14d"
+          },
+          {
+            "selected": false,
+            "text": "30d",
+            "value": "30d"
+          }
+        ],
+        "query": "1m,5m,10m,30m,1h,6h,12h,1d,7d,14d,30d",
+        "refresh": 2,
+        "skipUrlSync": false,
+        "type": "interval"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "tags": [],
+          "text": "user",
+          "value": "user"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "Mode",
+        "multi": false,
+        "name": "mode",
+        "options": [
+          {
+            "selected": true,
+            "text": "user",
+            "value": "user"
+          },
+          {
+            "selected": false,
+            "text": "client",
+            "value": "client"
+          }
+        ],
+        "query": "user, client",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": "Show",
+          "value": "Show"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "Pie Idle",
+        "multi": false,
+        "name": "pie_idle",
+        "options": [
+          {
+            "selected": true,
+            "text": "Show",
+            "value": "Show"
+          },
+          {
+            "selected": false,
+            "text": "Hide",
+            "value": "Hide"
+          }
+        ],
+        "query": "Show,Hide",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "tags": [],
+          "text": "rw_rate",
+          "value": "rw_rate"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "User/Client Pie",
+        "multi": false,
+        "name": "pie_metric",
+        "options": [
+          {
+            "selected": false,
+            "text": "ack_rate",
+            "value": "ack_rate"
+          },
+          {
+            "selected": false,
+            "text": "close_rate",
+            "value": "close_rate"
+          },
+          {
+            "selected": false,
+            "text": "getFSize_rate",
+            "value": "getFSize_rate"
+          },
+          {
+            "selected": false,
+            "text": "hrtbeat_rate",
+            "value": "hrtbeat_rate"
+          },
+          {
+            "selected": false,
+            "text": "nodeInf_rate",
+            "value": "nodeInf_rate"
+          },
+          {
+            "selected": false,
+            "text": "ops-rd_rate",
+            "value": "ops-rd_rate"
+          },
+          {
+            "selected": false,
+            "text": "ops-wr_rate",
+            "value": "ops-wr_rate"
+          },
+          {
+            "selected": false,
+            "text": "read_rate",
+            "value": "read_rate"
+          },
+          {
+            "selected": true,
+            "text": "rw_rate",
+            "value": "rw_rate"
+          },
+          {
+            "selected": false,
+            "text": "sAttr_rate",
+            "value": "sAttr_rate"
+          },
+          {
+            "selected": false,
+            "text": "sChDrct_rate",
+            "value": "sChDrct_rate"
+          },
+          {
+            "selected": false,
+            "text": "statfs_rate",
+            "value": "statfs_rate"
+          },
+          {
+            "selected": false,
+            "text": "storInf_rate",
+            "value": "storInf_rate"
+          },
+          {
+            "selected": false,
+            "text": "sum_rate",
+            "value": "sum_rate"
+          },
+          {
+            "selected": false,
+            "text": "trunc_rate",
+            "value": "trunc_rate"
+          },
+          {
+            "selected": false,
+            "text": "unlnk_rate",
+            "value": "unlnk_rate"
+          },
+          {
+            "selected": false,
+            "text": "write_rate",
+            "value": "write_rate"
+          }
+        ],
+        "query": "ack_rate,close_rate,getFSize_rate,hrtbeat_rate,nodeInf_rate,ops-rd_rate,ops-wr_rate,read_rate,rw_rate,sAttr_rate,sChDrct_rate,statfs_rate,storInf_rate,sum_rate,trunc_rate,unlnk_rate,write_rate",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "tags": [],
+          "text": "read_rate",
+          "value": "read_rate"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "User/Client Graph A",
+        "multi": false,
+        "name": "metric_a",
+        "options": [
+          {
+            "selected": false,
+            "text": "None",
+            "value": "None"
+          },
+          {
+            "selected": false,
+            "text": "ack_rate",
+            "value": "ack_rate"
+          },
+          {
+            "selected": false,
+            "text": "close_rate",
+            "value": "close_rate"
+          },
+          {
+            "selected": false,
+            "text": "getFSize_rate",
+            "value": "getFSize_rate"
+          },
+          {
+            "selected": false,
+            "text": "hrtbeat_rate",
+            "value": "hrtbeat_rate"
+          },
+          {
+            "selected": false,
+            "text": "nodeInf_rate",
+            "value": "nodeInf_rate"
+          },
+          {
+            "selected": false,
+            "text": "ops-rd_rate",
+            "value": "ops-rd_rate"
+          },
+          {
+            "selected": false,
+            "text": "ops-wr_rate",
+            "value": "ops-wr_rate"
+          },
+          {
+            "selected": true,
+            "text": "read_rate",
+            "value": "read_rate"
+          },
+          {
+            "selected": false,
+            "text": "rw_rate",
+            "value": "rw_rate"
+          },
+          {
+            "selected": false,
+            "text": "sAttr_rate",
+            "value": "sAttr_rate"
+          },
+          {
+            "selected": false,
+            "text": "sChDrct_rate",
+            "value": "sChDrct_rate"
+          },
+          {
+            "selected": false,
+            "text": "statfs_rate",
+            "value": "statfs_rate"
+          },
+          {
+            "selected": false,
+            "text": "storInf_rate",
+            "value": "storInf_rate"
+          },
+          {
+            "selected": false,
+            "text": "sum_rate",
+            "value": "sum_rate"
+          },
+          {
+            "selected": false,
+            "text": "trunc_rate",
+            "value": "trunc_rate"
+          },
+          {
+            "selected": false,
+            "text": "unlnk_rate",
+            "value": "unlnk_rate"
+          },
+          {
+            "selected": false,
+            "text": "write_rate",
+            "value": "write_rate"
+          }
+        ],
+        "query": "None,ack_rate,close_rate,getFSize_rate,hrtbeat_rate,nodeInf_rate,ops-rd_rate,ops-wr_rate,read_rate,rw_rate,sAttr_rate,sChDrct_rate,statfs_rate,storInf_rate,sum_rate,trunc_rate,unlnk_rate,write_rate",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": "write_rate",
+          "value": "write_rate"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "User/Client Graph B",
+        "multi": false,
+        "name": "metric_b",
+        "options": [
+          {
+            "selected": false,
+            "text": "None",
+            "value": "None"
+          },
+          {
+            "selected": false,
+            "text": "ack_rate",
+            "value": "ack_rate"
+          },
+          {
+            "selected": false,
+            "text": "close_rate",
+            "value": "close_rate"
+          },
+          {
+            "selected": false,
+            "text": "getFSize_rate",
+            "value": "getFSize_rate"
+          },
+          {
+            "selected": false,
+            "text": "hrtbeat_rate",
+            "value": "hrtbeat_rate"
+          },
+          {
+            "selected": false,
+            "text": "nodeInf_rate",
+            "value": "nodeInf_rate"
+          },
+          {
+            "selected": false,
+            "text": "ops-rd_rate",
+            "value": "ops-rd_rate"
+          },
+          {
+            "selected": false,
+            "text": "ops-wr_rate",
+            "value": "ops-wr_rate"
+          },
+          {
+            "selected": false,
+            "text": "read_rate",
+            "value": "read_rate"
+          },
+          {
+            "selected": false,
+            "text": "rw_rate",
+            "value": "rw_rate"
+          },
+          {
+            "selected": false,
+            "text": "sAttr_rate",
+            "value": "sAttr_rate"
+          },
+          {
+            "selected": false,
+            "text": "sChDrct_rate",
+            "value": "sChDrct_rate"
+          },
+          {
+            "selected": false,
+            "text": "statfs_rate",
+            "value": "statfs_rate"
+          },
+          {
+            "selected": false,
+            "text": "storInf_rate",
+            "value": "storInf_rate"
+          },
+          {
+            "selected": false,
+            "text": "sum_rate",
+            "value": "sum_rate"
+          },
+          {
+            "selected": false,
+            "text": "trunc_rate",
+            "value": "trunc_rate"
+          },
+          {
+            "selected": false,
+            "text": "unlnk_rate",
+            "value": "unlnk_rate"
+          },
+          {
+            "selected": true,
+            "text": "write_rate",
+            "value": "write_rate"
+          }
+        ],
+        "query": "None,ack_rate,close_rate,getFSize_rate,hrtbeat_rate,nodeInf_rate,ops-rd_rate,ops-wr_rate,read_rate,rw_rate,sAttr_rate,sChDrct_rate,statfs_rate,storInf_rate,sum_rate,trunc_rate,unlnk_rate,write_rate",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "text": "Show",
+          "value": "Show"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "Bsy",
+        "multi": false,
+        "name": "show_bsy",
+        "options": [
+          {
+            "selected": true,
+            "text": "Show",
+            "value": "Show"
+          },
+          {
+            "selected": false,
+            "text": "Hide",
+            "value": "Hide"
+          }
+        ],
+        "query": "Show,Hide",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "text": "Show",
+          "value": "Show"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "Qlen",
+        "multi": false,
+        "name": "show_qlen",
+        "options": [
+          {
+            "selected": true,
+            "text": "Show",
+            "value": "Show"
+          },
+          {
+            "selected": false,
+            "text": "Hide",
+            "value": "Hide"
+          }
+        ],
+        "query": "Show,Hide",
+        "skipUrlSync": false,
+        "type": "custom"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-12h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "BeeGFS I/O Data Rates by User/Client/Node",
+  "uid": "ZSxlbCuZz",
+  "version": 145
+}

@@ -1,0 +1,3737 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 1,
+  "id": 82,
+  "iteration": 1595261773265,
+  "links": [],
+  "panels": [
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "beegfs_stats",
+      "format": "locale",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 8,
+        "x": 0,
+        "y": 0
+      },
+      "id": 9,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "options": {},
+      "pluginVersion": "6.2.5",
+      "postfix": " users",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT count(distinct(\"user\")) FROM (SELECT first(\"read_rate\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'user') GROUP BY \"user\" fill(none)) WHERE $timeFilter GROUP BY time($buckets) fill(none)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "vnas01"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "group"
+            }
+          ]
+        }
+      ],
+      "thresholds": "",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "beegfs_stats",
+      "format": "locale",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 8,
+        "x": 8,
+        "y": 0
+      },
+      "id": 8,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "options": {},
+      "pluginVersion": "6.2.5",
+      "postfix": " clients",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "count",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT count(distinct(\"client\")) FROM (SELECT first(\"read_rate\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'client') GROUP BY \"client\" fill(none)) WHERE $timeFilter GROUP BY time($buckets) fill(none)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "vnas01"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "group"
+            }
+          ]
+        }
+      ],
+      "thresholds": "",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "beegfs_stats",
+      "format": "locale",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 8,
+        "x": 16,
+        "y": 0
+      },
+      "hideTimeOverride": true,
+      "id": 11,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "options": {},
+      "pluginVersion": "6.2.5",
+      "postfix": " nodes",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT count(distinct(\"server\")) FROM (SELECT first(\"bsy\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'server') GROUP BY \"server\" fill(none)) WHERE $timeFilter GROUP BY time($buckets)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "vnas01"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "group"
+            }
+          ]
+        }
+      ],
+      "thresholds": "",
+      "timeFrom": null,
+      "timeShift": "5m",
+      "title": "",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {},
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "beegfs_stats",
+      "fill": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 2
+      },
+      "id": 23,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": true,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sideWidth": null,
+        "sort": "current",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": false,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {},
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "/Total (client|user) Metrics/",
+          "color": "rgba(158, 166, 245, 0.18)",
+          "stack": false,
+          "zindex": -3
+        },
+        {
+          "alias": "Total bsy",
+          "bars": false,
+          "color": "rgba(55, 135, 45, 0.8)",
+          "lines": true,
+          "linewidth": 2,
+          "stack": false,
+          "yaxis": 2,
+          "zindex": 3
+        },
+        {
+          "alias": "Total qlen",
+          "bars": false,
+          "color": "rgba(196, 22, 42, 0.8)",
+          "lines": true,
+          "linewidth": 2,
+          "stack": false,
+          "yaxis": 2,
+          "zindex": 3
+        },
+        {
+          "alias": "Total reqs",
+          "bars": false,
+          "color": "rgba(87, 148, 242, 0.8)",
+          "lines": true,
+          "linewidth": 2,
+          "stack": false,
+          "yaxis": 2,
+          "zindex": 3
+        }
+      ],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "Total $mode Metrics",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "sum_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total $mode ack_rate",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "ack_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total $mode close_rate",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "close_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total $mode getFSize_rate",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "D",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "getFSize_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total $mode hrtbeat_rate",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "E",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "hrtbeat_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total $mode nodeInf_rate",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "F",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "nodeInf_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total $mode ops-rd_rate",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "G",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "ops-rd_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total $mode ops-wr_rate",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "H",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "ops-wr_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total $mode read_rate",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT \"$show_rw\" FROM (SELECT last(\"read_rate\") AS \"Show\" FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_$mode') GROUP BY time($buckets) fill(0)) WHERE $timeFilter",
+          "rawQuery": true,
+          "refId": "I",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "read_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total $mode sAttr_rate",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "J",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "sAttr_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total $mode sChDrct_rate",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "K",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "sChDrct_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total $mode statfs_rate",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "L",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "statfs_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total $mode storInf_rate",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "M",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "storInf_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total $mode trunc_rate",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "N",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "trunc_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total $mode unlnk_rate",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "O",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "unlnk_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total $mode write_rate",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT \"$show_rw\" FROM (SELECT last(\"write_rate\") AS \"Show\" FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_$mode') GROUP BY time($buckets) fill(0)) WHERE $timeFilter",
+          "rawQuery": true,
+          "refId": "P",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "write_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total bsy",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "Q",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "bsy"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_server"
+            }
+          ]
+        },
+        {
+          "alias": "Total qlen",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "R",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "qlen"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_server"
+            }
+          ]
+        },
+        {
+          "alias": "Total reqs",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT \"$show_reqs\" FROM (SELECT last(\"reqs\") AS \"Show\" FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_server') GROUP BY time($buckets) fill(0)) WHERE $timeFilter",
+          "rawQuery": true,
+          "refId": "S",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "reqs"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_server"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "$colo $name $mode Data ($buckets buckets)",
+      "tooltip": {
+        "shared": false,
+        "sort": 2,
+        "value_type": "cumulative"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 1,
+          "format": "iops",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "decimals": 1,
+          "format": "short",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": true,
+        "alignLevel": 0
+      }
+    },
+    {
+      "content": "<style>\n.hr-text {\n  line-height: 1em;\n  position: relative;\n  outline: 0;\n  border: 0;\n  color: black;\n  text-align: center;\n  height: 1.5em;\n  opacity: .5;\n  font-family: Futura, sans-serif;\n}\n.hr-text:before {\n  content: '';\n  background: -webkit-gradient(linear, left top, right top, from(transparent), color-stop(#818078), to(transparent));\n  background: linear-gradient(to right, transparent, #FFFFFF, transparent);\n  position: absolute;\n  left: 0;\n  top: 50%;\n  width: 100%;\n  height: 1px;\n}\n.hr-text:after {\n  content: attr(data-content);\n  position: relative;\n  display: inline-block;\n  color: black;\n  padding: 0 .5em;\n  line-height: 1.5em;\n  color: #FFFFFF;\n  background-color: #161719;\n  white-space: pre;\n  margin-top: -9px;\n}\n</style>\n<table align=\"center\" width=\"100%\" height=\"100%\" style=\"border: 0px\">\n  <tr><td style=\"border: 0px\">\n    <hr align=\"center\" class=\"hr-text\" data-content=\"^ DATA ^\nv METADATA v\">\n  </td></tr>\n</table>",
+      "gridPos": {
+        "h": 2,
+        "w": 24,
+        "x": 0,
+        "y": 9
+      },
+      "id": 19,
+      "links": [],
+      "mode": "html",
+      "options": {},
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "transparent": true,
+      "type": "text"
+    },
+    {
+      "aliasColors": {},
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "beegfs_mstats",
+      "fill": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 11
+      },
+      "id": 22,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": true,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "sideWidth": null,
+        "sort": "current",
+        "sortDesc": true,
+        "total": false,
+        "values": true
+      },
+      "lines": false,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {},
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "/Total (client|user) Metrics/",
+          "color": "rgba(158, 166, 245, 0.18)",
+          "stack": false,
+          "zindex": -3
+        },
+        {
+          "alias": "Total bsy",
+          "bars": false,
+          "color": "rgba(55, 135, 45, 0.8)",
+          "lines": true,
+          "linewidth": 2,
+          "stack": false,
+          "yaxis": 2,
+          "zindex": 3
+        },
+        {
+          "alias": "Total qlen",
+          "bars": false,
+          "color": "rgba(196, 22, 42, 0.8)",
+          "lines": true,
+          "linewidth": 2,
+          "stack": false,
+          "yaxis": 2,
+          "zindex": 3
+        },
+        {
+          "alias": "Total reqs",
+          "bars": false,
+          "color": "rgba(87, 148, 242, 0.8)",
+          "lines": true,
+          "linewidth": 2,
+          "stack": false,
+          "yaxis": 2,
+          "zindex": 3
+        }
+      ],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "Total $mode Metrics",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "sum_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total $mode ack_rate",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "ack_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total $mode close_rate",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "close_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total $mode create_rate",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "D",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "create_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total $mode createLI_rate",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "E",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "createLI_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total $mode dirparent_rate",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "F",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "dirparent_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total $mode entInf_rate",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "G",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "entInf_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total $mode getXA_rate",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "H",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "getXA_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total $mode hardlnk_rate",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "I",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "hardlnk_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total $mode mdsInf_rate",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "J",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "mdsInf_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total $mode mirror_rate",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "K",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "mirror_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total $mode mkdir_rate",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "L",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "mkdir_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total $mode nodeInf_rate",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "M",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "nodeInf_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total $mode open_rate",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "N",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "open_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total $mode rddir_rate",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "O",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "rddir_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total $mode ren_rate",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "P",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "ren_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total $mode revalLI_rate",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "Q",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "revalLI_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total $mode rmdir_rate",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "R",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "rmdir_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total $mode sAttr_rate",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "S",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "sAttr_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total $mode sChDrct_rate",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "T",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "sChDrct_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total $mode statfs_rate",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "U",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "statfs_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total $mode statLI_rate",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "V",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "statLI_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total $mode stat_rate",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "W",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "stat_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total $mode trunc_rate",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "X",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "trunc_rate"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_$mode"
+            }
+          ]
+        },
+        {
+          "alias": "Total bsy",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "Y",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "bsy"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_server"
+            }
+          ]
+        },
+        {
+          "alias": "Total qlen",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT last(\"$metric_a\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_user') AND $timeFilter GROUP BY time($buckets) fill(0)",
+          "rawQuery": false,
+          "refId": "Z",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "qlen"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_server"
+            }
+          ]
+        },
+        {
+          "alias": "Total reqs",
+          "groupBy": [
+            {
+              "params": [
+                "$buckets"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "0"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT \"$show_reqs\" FROM (SELECT last(\"reqs\") AS \"Show\" FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'total_server') GROUP BY time($buckets) fill(0)) WHERE $timeFilter",
+          "rawQuery": true,
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "reqs"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "last"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "$host"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "total_server"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "$colo $name $mode Metadata ($buckets buckets)",
+      "tooltip": {
+        "shared": false,
+        "sort": 2,
+        "value_type": "cumulative"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 1,
+          "format": "iops",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "decimals": 1,
+          "format": "short",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": true,
+        "alignLevel": 0
+      }
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "beegfs_mstats",
+      "format": "locale",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 8,
+        "x": 0,
+        "y": 18
+      },
+      "id": 17,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "options": {},
+      "pluginVersion": "6.2.5",
+      "postfix": " users",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT count(distinct(\"user\")) FROM (SELECT first(\"sum\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'user') GROUP BY \"user\" fill(none)) WHERE $timeFilter GROUP BY time($buckets) fill(none)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "vnas01"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "group"
+            }
+          ]
+        }
+      ],
+      "thresholds": "",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "beegfs_mstats",
+      "format": "locale",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 8,
+        "x": 8,
+        "y": 18
+      },
+      "id": 15,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "options": {},
+      "pluginVersion": "6.2.5",
+      "postfix": " clients",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "count",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT count(distinct(\"client\")) FROM (SELECT first(\"sum\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'client') GROUP BY \"client\" fill(none)) WHERE $timeFilter GROUP BY time($buckets) fill(none)\n",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "vnas01"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "group"
+            }
+          ]
+        }
+      ],
+      "thresholds": "",
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": false,
+      "colorValue": false,
+      "colors": [
+        "#299c46",
+        "rgba(237, 129, 40, 0.89)",
+        "#d44a3a"
+      ],
+      "datasource": "beegfs_mstats",
+      "format": "locale",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 8,
+        "x": 16,
+        "y": 18
+      },
+      "hideTimeOverride": true,
+      "id": 13,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "options": {},
+      "pluginVersion": "6.2.5",
+      "postfix": " nodes",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(31, 118, 189, 0.18)",
+        "full": true,
+        "lineColor": "rgb(31, 120, 193)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "tail",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT count(distinct(\"server\")) FROM (SELECT first(\"bsy\") FROM \"tail\" WHERE (\"host\" = '$host' AND \"ident\" = 'server') GROUP BY \"server\" fill(none)) WHERE $timeFilter GROUP BY time($buckets)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "host",
+              "operator": "=",
+              "value": "vnas01"
+            },
+            {
+              "condition": "AND",
+              "key": "ident",
+              "operator": "=",
+              "value": "group"
+            }
+          ]
+        }
+      ],
+      "thresholds": "",
+      "timeFrom": null,
+      "timeShift": "5m",
+      "title": "",
+      "type": "singlestat",
+      "valueFontSize": "80%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "current"
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 18,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "selected": true,
+          "text": "Site",
+          "value": "Site"
+        },
+        "hide": 2,
+        "label": null,
+        "name": "colo",
+        "options": [
+          {
+            "selected": true,
+            "text": "Site",
+            "value": "Site"
+          }
+        ],
+        "query": "Site",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": "BeeGFS",
+          "value": "BeeGFS"
+        },
+        "hide": 2,
+        "label": "Name",
+        "name": "name",
+        "options": [
+          {
+            "selected": true,
+            "text": "BeeGFS",
+            "value": "BeeGFS"
+          }
+        ],
+        "query": "BeeGFS",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": "stats-server-hostname",
+          "value": "stats-server-hostname"
+        },
+        "hide": 2,
+        "label": "Host",
+        "name": "host",
+        "options": [
+          {
+            "selected": true,
+            "text": "stats-server-hostname",
+            "value": "stats-server-hostname"
+          }
+        ],
+        "query": "stats-server-hostname",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": "25000000000",
+          "value": "25000000000"
+        },
+        "hide": 2,
+        "label": null,
+        "name": "bandwidth",
+        "options": [
+          {
+            "selected": true,
+            "text": "25000000000",
+            "value": "25000000000"
+          }
+        ],
+        "query": "25000000000",
+        "skipUrlSync": false,
+        "type": "constant"
+      },
+      {
+        "auto": true,
+        "auto_count": 50,
+        "auto_min": "60s",
+        "current": {
+          "text": "auto",
+          "value": "$__auto_interval_buckets"
+        },
+        "hide": 0,
+        "label": "Buckets",
+        "name": "buckets",
+        "options": [
+          {
+            "selected": true,
+            "text": "auto",
+            "value": "$__auto_interval_buckets"
+          },
+          {
+            "selected": false,
+            "text": "1m",
+            "value": "1m"
+          },
+          {
+            "selected": false,
+            "text": "5m",
+            "value": "5m"
+          },
+          {
+            "selected": false,
+            "text": "10m",
+            "value": "10m"
+          },
+          {
+            "selected": false,
+            "text": "30m",
+            "value": "30m"
+          },
+          {
+            "selected": false,
+            "text": "1h",
+            "value": "1h"
+          },
+          {
+            "selected": false,
+            "text": "6h",
+            "value": "6h"
+          },
+          {
+            "selected": false,
+            "text": "12h",
+            "value": "12h"
+          },
+          {
+            "selected": false,
+            "text": "1d",
+            "value": "1d"
+          },
+          {
+            "selected": false,
+            "text": "7d",
+            "value": "7d"
+          },
+          {
+            "selected": false,
+            "text": "14d",
+            "value": "14d"
+          },
+          {
+            "selected": false,
+            "text": "30d",
+            "value": "30d"
+          }
+        ],
+        "query": "1m,5m,10m,30m,1h,6h,12h,1d,7d,14d,30d",
+        "refresh": 2,
+        "skipUrlSync": false,
+        "type": "interval"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": "user",
+          "value": "user"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "Mode",
+        "multi": false,
+        "name": "mode",
+        "options": [
+          {
+            "selected": false,
+            "text": "client",
+            "value": "client"
+          },
+          {
+            "selected": true,
+            "text": "user",
+            "value": "user"
+          }
+        ],
+        "query": "client,user",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": "Hide",
+          "value": "Hide"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "R/W Data Rate",
+        "multi": false,
+        "name": "show_rw",
+        "options": [
+          {
+            "selected": false,
+            "text": "Show",
+            "value": "Show"
+          },
+          {
+            "selected": true,
+            "text": "Hide",
+            "value": "Hide"
+          }
+        ],
+        "query": "Show,Hide",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": "Hide",
+          "value": "Hide"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "Total Reqs",
+        "multi": false,
+        "name": "show_reqs",
+        "options": [
+          {
+            "selected": false,
+            "text": "Show",
+            "value": "Show"
+          },
+          {
+            "selected": true,
+            "text": "Hide",
+            "value": "Hide"
+          }
+        ],
+        "query": "Show,Hide",
+        "skipUrlSync": false,
+        "type": "custom"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-12h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "",
+  "title": "BeeGFS I/O Rates",
+  "uid": "0lk8Hy7Mk",
+  "version": 19
+}

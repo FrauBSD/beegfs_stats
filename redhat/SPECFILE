@@ -9,7 +9,7 @@ Group: System Environment/Daemons
 
 Summary: beegfs_stats
 License: BSD
-Version: 3.1
+Version: 3.1.1
 Release: 1.el7
 Buildarch: noarch
 
@@ -102,5 +102,7 @@ done
 
 
 %changelog
+* Fri Jul  9 2021 Devin Teske <dteske@freebsd.org> 3.1.1-1.el7
+- d84a374 Fix service status
 * Mon Jul 20 2020 Devin Teske <dteske@freebsd.org> 3.1-1.el7
 - Package created

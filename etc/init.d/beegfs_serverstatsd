@@ -59,7 +59,7 @@ status()
 	local pid
 
 	if pid=$( cat $pidfile 2> /dev/null ) &&
-	   pgrep -P $pid awk > /dev/null
+	   pgrep -P $pid beegfstop > /dev/null
 	then
 		echo "$prog is running (pid $pid)"
 	else
